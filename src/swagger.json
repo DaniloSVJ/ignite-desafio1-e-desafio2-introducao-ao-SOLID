@@ -1,0 +1,175 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title":"List of Registered Users ",
+        "description": "List of Registered Users",
+        "version": "1.0.0",
+        "contact": {
+            "email":"danilosampaio@rocketseat.com.br"
+        }
+    },
+    "paths":{
+        "/users":{
+            "post":{
+                "tags": ["Users"],
+                "summary": "Create User",
+                "description": "Create a new users",
+                
+                "requestBody": {
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "example":{
+                                        "name": "Category name sample",
+                                        "description": "Category description sample"
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                },
+                "responses":{
+                    "201": {
+                        "description":"Created"
+                    },
+                    "400": {
+                        "description":"Create already exists"
+                    }
+                }
+            },
+            "get":{
+                "tags":["Users"],
+                "summary":"List All Users",
+                "description":"List all Users",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in":"header",
+                        "description": "User all list",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Success",
+                        "content":{
+                            "application/json":{
+                                "scheme":{
+                                    "type":"array",
+                                    "items":"object",
+                                    "properties":{
+                                        "name":{
+                                            "type":"string"
+                                        },
+                                        "email":{
+                                            "type":"string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        },
+        "/users/{user_id}/admin":{
+            "patch":{
+                "tags":["Users"],
+                "summary":"Update User",
+                "description":"Update user to admin",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in":"path",
+                        "description": "User id",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Success"
+                    
+                    }
+                }
+
+            }
+        },
+        "/users/{user_id}":{
+            "get":{
+                "tags":["Users"],
+                "summary":"User View",
+                "description":"User view",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in":"path",
+                        "description": "User id",
+                        "required": true,
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                
+                "responses":{
+                    "200":{
+                        "description":"Success",
+                        "content":{
+                            "application/json":{
+                                "scheme":{
+                                    "type":"object",
+                                    "properties":{
+                                        "id":{
+                                            "type":"string"
+                                        },
+                                        "admin":{
+                                            "type":"boolean"
+                                        },
+                                        "name":{
+                                            "type":"string"
+                                        },
+                                        "email":{
+                                            "type":"string"
+                                        }
+                                        ,
+                                        "created_at":{
+                                            "type":"string"
+                                        },
+                                        "updated_at":{
+                                            "type":"string"
+                                        }
+                                      
+                                      
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+        }
+        
+    }
+
+}
